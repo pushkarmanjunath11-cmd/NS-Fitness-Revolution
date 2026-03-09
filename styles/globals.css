@@ -49,6 +49,28 @@ body {
   50%       { transform: translateY(-10px); }
 }
 
+.cta-button {
+  background: var(--black);
+  color: var(--yellow);
+  border: none;
+  padding: 15px 40px;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.cta-button:focus,
+.cta-button:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(201, 241, 53, 0.2);
+}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }

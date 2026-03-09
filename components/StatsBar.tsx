@@ -5,15 +5,26 @@ import { STATS } from "@/lib/data";
 function useCountUp(target: number, active: boolean, duration = 1800) {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setCount(0);
+      return;
+    }
     let startTime: number | null = null;
+    let rAFId: number | null = null;
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       setCount(Math.floor(progress * target));
-      if (progress < 1) requestAnimationFrame(animate);
+      if (progress < 1) {
+        rAFId = requestAnimationFrame(animate);
+      }
     };
-    requestAnimationFrame(animate);
+    rAFId = requestAnimationFrame(animate);
+    return () => {
+      if (rAFId !== null) {
+        cancelAnimationFrame(rAFId);
+      }
+    };
   }, [active, target, duration]);
   return count;
 }

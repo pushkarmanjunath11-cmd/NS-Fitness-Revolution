@@ -14,8 +14,8 @@ export default function ReviewCard({ name, avatar, stars, text }: ReviewCardProp
         </div>
         <div>
           <div style={{ fontWeight: 600, color: "var(--text)", fontSize: "0.95rem" }}>{name}</div>
-          <div style={{ display: "flex", gap: 2, marginTop: 2 }}>
-            {[...Array(5)].map((_, i) => <span key={i} style={{ color: i < stars ? "#FFD700" : "#333", fontSize: 13 }}>★</span>)}
+          <div style={{ display: "flex", gap: 2, marginTop: 2 }} role="img" aria-label={`Rating: ${stars} out of 5`}>
+            {[...Array(5)].map((_, i) => <span key={i} style={{ color: i < stars ? "#FFD700" : "#333", fontSize: 13 }} aria-hidden="true">★</span>)}
           </div>
         </div>
       </div>

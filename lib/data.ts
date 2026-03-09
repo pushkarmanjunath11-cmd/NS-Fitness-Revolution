@@ -55,12 +55,12 @@ export const PLANS = [
 ];
 
 export const REVIEWS = [
-  { name: "Subham Kedia",  avatar: "SK", stars: 5, text: "Lost 10 kgs in 2 months following Sujan's diet and workout program. The trainers are incredibly dedicated and the gym is spacious. Best decision I ever made!" },
-  { name: "Deepak Poddar", avatar: "DP", stars: 5, text: "Very spacious gym, never crowded. Equipment is well-maintained and trainers actually guide you properly. Highly recommended for serious fitness!" },
-  { name: "Sushmitha J",   avatar: "SJ", stars: 5, text: "Clean environment, supportive community. I was a complete beginner and felt so welcome here. Kaushik helped me build a solid foundation." },
-  { name: "Nishant Sahu",  avatar: "NS", stars: 5, text: "Exceptional personal training. Kaushal pushed me beyond what I thought possible. Down 8 kg in 6 weeks with visible muscle definition. Incredible!" },
-  { name: "Cosmic Sage",   avatar: "CS", stars: 5, text: "Best gym in AECS Layout. Huge floor space, all the equipment you need, and trainers who genuinely care about your progress. Worth every rupee." },
-  { name: "Priya Sharma",  avatar: "PS", stars: 5, text: "The equipment here is top-notch. The trainers made me feel comfortable from day one. Loving my results after just 6 weeks!" },
+  { name: "A.K.",  avatar: "AK", stars: 5, text: "Lost 10 kgs in 2 months following the diet and workout program. The trainers are incredibly dedicated and the gym is spacious. Best decision I ever made!" },
+  { name: "D.P.", avatar: "DP", stars: 4, text: "Very spacious gym, never crowded. Equipment is well-maintained and trainers actually guide you properly. Highly recommended for serious fitness!" },
+  { name: "S.J.",   avatar: "SJ", stars: 5, text: "Clean environment, supportive community. I was a complete beginner and felt so welcome here. The coaches helped me build a solid foundation." },
+  { name: "N.S.",  avatar: "NS", stars: 5, text: "Exceptional personal training. Coaches pushed me beyond what I thought possible. Down 8 kg in 6 weeks with visible muscle definition. Incredible!" },
+  { name: "M.C.",   avatar: "MC", stars: 4, text: "Best gym in the area. Huge floor space, all the equipment you need, and trainers who genuinely care about your progress. Worth every rupee." },
+  { name: "P.R.",  avatar: "PR", stars: 5, text: "The equipment here is top-notch. The trainers made me feel comfortable from day one. Loving my results after just 6 weeks!" },
 ];
 
 export const STATS = [

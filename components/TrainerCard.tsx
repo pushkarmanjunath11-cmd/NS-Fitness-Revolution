@@ -3,8 +3,21 @@ interface TrainerCardProps {
 }
 
 export default function TrainerCard({ name, role, exp, spec, cert, icon }: TrainerCardProps) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      // Trigger same action as onClick if card is interactive
+    }
+  };
+
+  const ariaLabel = `${name}, ${role}. Experience: ${exp}. Specialty: ${spec}. Certification: ${cert}`;
+
   return (
     <div style={{ background: "var(--card)", border: "1px solid var(--border)", padding: "36px 24px", textAlign: "center", transition: "all 0.4s", position: "relative", overflow: "hidden" }}
+      tabIndex={0}
+      role="button"
+      aria-label={ariaLabel}
+      onKeyDown={handleKeyDown}
       onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "var(--yellow)"; el.style.transform = "translateY(-6px)"; el.style.boxShadow = "0 20px 60px rgba(201,241,53,0.12)"; }}
       onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "var(--border)"; el.style.transform = "translateY(0)"; el.style.boxShadow = "none"; }}>
 

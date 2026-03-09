@@ -27,8 +27,8 @@ export default function Footer() {
             </div>
             {NAV_LINKS.map((l) => (
               <Link key={l.href} href={l.href} style={{ display: "block", color: "#444", fontSize: "0.88rem", marginBottom: 10, textDecoration: "none" }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--yellow)")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "#444")}>
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--yellow)")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#444")}>
                 {l.label}
               </Link>
             ))}

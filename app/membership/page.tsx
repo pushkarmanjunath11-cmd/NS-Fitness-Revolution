@@ -43,7 +43,7 @@ export default function MembershipPage() {
       <section style={{ padding: "70px 5%", textAlign: "center", background: "var(--yellow)" }}>
         <h2 style={{ fontFamily: "'Anton', sans-serif", fontSize: "clamp(2rem, 5vw, 3.2rem)", color: "var(--black)", lineHeight: 1, marginBottom: 14 }}>NOT SURE WHICH PLAN?</h2>
         <p style={{ color: "#333", marginBottom: 32 }}>Start with a free trial — no commitment required.</p>
-        <Link href="/join" style={{ background: "var(--black)", color: "var(--yellow)", border: "none", padding: "15px 40px", fontFamily: "'Anton', sans-serif", fontSize: "1rem", letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}>Book Free Trial →</Link>
+        <Link href="/join" className="cta-button">Book Free Trial →</Link>
       </section>
     </>
   );

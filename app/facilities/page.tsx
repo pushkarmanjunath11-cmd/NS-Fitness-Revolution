@@ -1,3 +1,4 @@
+"use client";
 import PageHero from "@/components/PageHero";
 import { FACILITIES } from "@/lib/data";
 import Link from "next/link";
@@ -12,8 +13,8 @@ export default function FacilitiesPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
             {FACILITIES.map((f, i) => (
               <div key={i} style={{ background: "var(--card)", border: "1px solid var(--border)", padding: "36px 28px", transition: "all 0.35s", position: "relative", overflow: "hidden" }}
-                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(201,241,53,0.4)"; el.style.transform = "translateY(-5px)"; (el.querySelector(".top-bar") as HTMLElement).style.transform = "scaleX(1)"; }}
-                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "var(--border)"; el.style.transform = "translateY(0)"; (el.querySelector(".top-bar") as HTMLElement).style.transform = "scaleX(0)"; }}>
+                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(201,241,53,0.4)"; el.style.transform = "translateY(-5px)"; const topBar = el.querySelector(".top-bar") as HTMLElement | null; if (topBar) topBar.style.transform = "scaleX(1)"; }}
+                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "var(--border)"; el.style.transform = "translateY(0)"; const topBar = el.querySelector(".top-bar") as HTMLElement | null; if (topBar) topBar.style.transform = "scaleX(0)"; }}>
                 <div className="top-bar" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "linear-gradient(90deg, var(--red), var(--yellow))", transform: "scaleX(0)", transformOrigin: "left", transition: "transform 0.35s" }} />
                 <div style={{ fontSize: "2.8rem", marginBottom: 18 }}>{f.icon}</div>
                 <h3 style={{ fontFamily: "'Anton', sans-serif", fontSize: "1.25rem", color: "var(--text)", letterSpacing: "0.06em", marginBottom: 10, textTransform: "uppercase" }}>{f.title}</h3>

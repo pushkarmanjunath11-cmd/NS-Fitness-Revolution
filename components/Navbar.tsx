@@ -59,14 +59,14 @@ export default function Navbar() {
           display: "none", background: "none",
           border: "1px solid rgba(201,241,53,0.3)", color: "var(--yellow)",
           padding: "8px 14px", cursor: "pointer", fontSize: "1.2rem",
-        }}>
+        }} aria-label="Toggle navigation menu" aria-expanded={menuOpen} aria-controls="mobile-menu">
           {menuOpen ? "✕" : "☰"}
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div style={{ background: "rgba(13,13,13,0.99)", borderTop: "1px solid rgba(201,241,53,0.1)", padding: "16px 5% 24px" }}>
+        <div id="mobile-menu" style={{ background: "rgba(13,13,13,0.99)", borderTop: "1px solid rgba(201,241,53,0.1)", padding: "16px 5% 24px" }}>
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} style={{
               display: "block", padding: "14px 0",

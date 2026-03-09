@@ -7,12 +7,38 @@ import Link from "next/link";
 export default function JoinPage() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", goal: "", plan: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setForm({ name: "", phone: "", email: "", goal: "", plan: "" });
-    setTimeout(() => setSubmitted(false), 6000);
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch("/api/submit-trial", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+      
+      setError(null);
+      setSubmitted(true);
+      setForm({ name: "", phone: "", email: "", goal: "", plan: "" });
+      setTimeout(() => setSubmitted(false), 6000);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      setError(errorMessage);
+      console.error("Error submitting form:", error);
+      // Keep form intact on error
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,10 +74,15 @@ export default function JoinPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <input className="input-field" placeholder="Full Name *" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
-                <input className="input-field" type="tel" placeholder="Phone Number *" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
-                <input className="input-field" type="email" placeholder="Email Address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-                <select className="input-field" value={form.goal} onChange={(e) => setForm({ ...form, goal: e.target.value })} style={{ cursor: "pointer" }}>
+                {error && (
+                  <div style={{ background: "rgba(232,0,13,0.12)", border: "1px solid var(--border-red)", color: "#ff6666", padding: "12px 14px", borderRadius: "4px", fontSize: "0.9rem", lineHeight: 1.5 }}>
+                    {error}
+                  </div>
+                )}
+                <input className="input-field" placeholder="Full Name *" aria-label="Full Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required disabled={loading} />
+                <input className="input-field" type="tel" placeholder="Phone Number *" aria-label="Phone Number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required disabled={loading} />
+                <input className="input-field" type="email" placeholder="Email Address" aria-label="Email Address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} disabled={loading} />
+                <select className="input-field" aria-label="Fitness goal" value={form.goal} onChange={(e) => setForm({ ...form, goal: e.target.value })} style={{ cursor: "pointer" }} disabled={loading}>
                   <option value="">Select Fitness Goal</option>
                   <option value="weight-loss">Weight Loss</option>
                   <option value="muscle-gain">Muscle Gain</option>
@@ -59,11 +90,11 @@ export default function JoinPage() {
                   <option value="cardio">Cardio & Endurance</option>
                   <option value="general">General Fitness</option>
                 </select>
-                <select className="input-field" value={form.plan} onChange={(e) => setForm({ ...form, plan: e.target.value })} style={{ cursor: "pointer" }}>
+                <select className="input-field" aria-label="Membership plan" value={form.plan} onChange={(e) => setForm({ ...form, plan: e.target.value })} style={{ cursor: "pointer" }} disabled={loading}>
                   <option value="">Interested In (optional)</option>
                   {PLANS.map((p) => <option key={p.name} value={p.name}>{p.name} — {p.price}{p.period}</option>)}
                 </select>
-                <button type="submit" className="btn-primary" style={{ clipPath: "none", fontSize: "1.05rem", marginTop: 6, padding: 16 }}>Book My Free Trial →</button>
+                <button type="submit" className="btn-primary" style={{ clipPath: "none", fontSize: "1.05rem", marginTop: 6, padding: 16, opacity: loading ? 0.6 : 1, cursor: loading ? "not-allowed" : "pointer" }} disabled={loading}>{loading ? "Submitting..." : "Book My Free Trial →"}</button>
                 <p style={{ fontSize: "0.78rem", color: "#555", textAlign: "center" }}>No credit card required. We'll call you to confirm.</p>
               </form>
             )}

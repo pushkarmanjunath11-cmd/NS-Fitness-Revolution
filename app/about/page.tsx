@@ -18,7 +18,7 @@ export default function AboutPage() {
           </div>
           <div>
             <div className="section-tag">Why Choose Us</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 8 }}>
+            <ul style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 8, listStyle: "none", padding: 0, margin: 0 }}>
               {[
                 ["🏟️","Massive Space","3,000+ sqft — you'll never feel crowded, ever."],
                 ["🔴","Premium Equipment","Professional red-grade machines & free weights."],
@@ -27,17 +27,19 @@ export default function AboutPage() {
                 ["🕔","Great Hours","5 AM – 10 PM weekdays, 6 AM – 8 PM Sundays."],
                 ["🤝","Real Community","Supportive members who push each other forward."]
               ].map(([ic, title, desc]) => (
-                <div key={title} style={{ display: "flex", gap: 16, background: "var(--card)", border: "1px solid var(--border)", padding: "18px 20px", transition: "border-color 0.25s" }}
+                <li key={title} style={{ display: "flex", gap: 16, background: "var(--card)", border: "1px solid var(--border)", padding: "18px 20px", transition: "border-color 0.25s", tabIndex: 0, role: "button" } as any}
                   onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(201,241,53,0.35)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "var(--border)")}>
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "var(--border)")}
+                  onFocus={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(201,241,53,0.35)")}
+                  onBlur={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "var(--border)")}>
                   <span style={{ fontSize: "1.6rem", flexShrink: 0 }}>{ic}</span>
                   <div>
                     <div style={{ fontFamily: "'Anton', sans-serif", fontSize: "1rem", color: "var(--text)", letterSpacing: "0.05em" }}>{title}</div>
                     <div style={{ fontSize: "0.85rem", color: "#888", marginTop: 4 }}>{desc}</div>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </section>

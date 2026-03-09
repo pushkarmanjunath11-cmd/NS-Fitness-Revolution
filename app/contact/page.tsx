@@ -1,16 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import PageHero from "@/components/PageHero";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setSent(true);
     setForm({ name: "", phone: "", email: "", message: "" });
-    setTimeout(() => setSent(false), 5000);
+    timeoutRef.current = setTimeout(() => setSent(false), 5000);
   };
 
   return (
@@ -45,10 +57,10 @@ export default function ContactPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <input className="input-field" placeholder="Full Name *" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
-                <input className="input-field" type="tel" placeholder="Phone Number *" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
-                <input className="input-field" type="email" placeholder="Email Address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-                <textarea className="input-field" placeholder="Your message..." rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} style={{ resize: "vertical" }} />
+                <input className="input-field" placeholder="Full Name *" aria-label="Full Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+                <input className="input-field" type="tel" placeholder="Phone Number *" aria-label="Phone Number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
+                <input className="input-field" type="email" placeholder="Email Address" aria-label="Email Address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                <textarea className="input-field" placeholder="Your message..." aria-label="Message" rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} style={{ resize: "vertical" }} />
                 <button type="submit" className="btn-primary" style={{ clipPath: "none", fontSize: "1rem", marginTop: 8 }}>Send Message →</button>
               </form>
             )}
