@@ -1,3 +1,5 @@
+"use client";
+
 interface PageHeroProps {
   tag?: string;
   title: string;

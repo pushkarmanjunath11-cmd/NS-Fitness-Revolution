@@ -1,3 +1,5 @@
+"use client";
+
 interface ReviewCardProps {
   name: string; avatar: string; stars: number; text: string;
 }

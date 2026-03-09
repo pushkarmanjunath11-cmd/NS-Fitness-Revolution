@@ -1,3 +1,5 @@
+"use client";
+
 export default function WhatsAppFAB() {
   const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918861153632";
   

@@ -1,3 +1,5 @@
+"use client";
+
 interface TrainerCardProps {
   name: string; role: string; exp: string; spec: string; cert: string; icon: string;
 }
