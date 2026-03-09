@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import StatsBar from "@/components/StatsBar";
 import ReviewCard from "@/components/ReviewCard";

@@ -1,3 +1,5 @@
+"use client";
+
 import PageHero from "@/components/PageHero";
 import PricingCard from "@/components/PricingCard";
 import { PLANS } from "@/lib/data";

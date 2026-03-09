@@ -1,3 +1,5 @@
+"use client";
+
 import PageHero from "@/components/PageHero";
 import TrainerCard from "@/components/TrainerCard";
 import { TRAINERS } from "@/lib/data";

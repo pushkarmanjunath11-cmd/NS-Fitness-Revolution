@@ -1,3 +1,5 @@
+"use client";
+
 import PageHero from "@/components/PageHero";
 import ReviewCard from "@/components/ReviewCard";
 import { REVIEWS } from "@/lib/data";
